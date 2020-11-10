@@ -5,30 +5,106 @@ import javafx.scene.input.KeyCode;
 
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+import clases.Constantes;
+
+
 public class Main {
-    //Recuerda que aca empieza todo
+     
     public static void main(String[] args) {
-        //Con este objeto de la clase Scanner puedes capturar informacion por consola cada ves que lo uses
-        // recuerda cerrar el flujo de consulta cada ves lo uses sobre para que los uses in.close()
+    	//definición de variables
+    	int gasFijos=0;
+    	int gasVariables=0;
+    	int ingMensuales = 0;
+    	String capEndeudamiento;
+        
+    	CapacidadEndedudamiento endeudamiento = new CapacidadEndedudamiento();
+        
         Scanner in = new Scanner(System.in);
-
-        int ingMesuales;
-        System.out.println("Ingrese sus ingresos mensuales");
-
+        
         String entrada = "SI";
+        String valor = "";
         while (entrada.equals("SI")) {
-            System.out.println("Ingrese sus gastos fijos");
-            System.out.println("Ingrese sus gastos variable");
+        	
+        	//Solicita los ingresos
+        	System.out.println(Constantes.TEXTO_INGRESOS);
+        	valor = in.nextLine();
+            if(evaluaEntrada(valor)) {
+            	entrada = "NO";
+            
+            }
+            while (isNumeric(valor)==false) {
+        		System.out.println(Constantes.TEXTO_INGRESOS);
+        		valor = in.nextLine();
+        	}
+        	ingMensuales = Integer.parseInt(valor);
+        	endeudamiento.setIngresosTotales(ingMensuales);
+            
+            //Solicita los gastos fijos
+            System.out.println(Constantes.TEXTO_GASTOS_FIJOS);
+            valor = in.nextLine();
+            if(evaluaEntrada(valor)) {
+            	entrada = "NO";
+            }
+            while (isNumeric(valor)==false) {
+        		System.out.println(Constantes.TEXTO_GASTOS_FIJOS);
+        		valor = in.nextLine();
+            }
+            gasFijos = Integer.parseInt(valor);
+            endeudamiento.setGastosFijos(gasFijos);
+            
+            
+            
+            //Solicita los gastos variables
+            System.out.println(Constantes.TEXTO_GASTOS_VARIABLES);
+            valor = in.nextLine();
+            if(evaluaEntrada(valor)) {
+            	entrada = "NO";
+            }
+            while (isNumeric(valor)==false) {
+        		System.out.println(Constantes.TEXTO_GASTOS_FIJOS);
+        		valor = in.nextLine();
+            }
+            gasVariables = Integer.parseInt(valor);
+            endeudamiento.setGastoVaribales(gasVariables);
+         
+            
             //Esto te dara la primera entrada al proceso de solicitar los datos para instancir nuestro objeto
-            // CapacidadEndedudamiento()
-            //Valida las entradas de los usuarios que no vayas a convertir una "A" numero y el calculo no te funcione
-            //Utiliza el metodo is numeric para vada entrada de ser necesarios
+             
+            capEndeudamiento = endeudamiento.getCapacidadEndeudamiento(endeudamiento.getIngresosTotales(),
+            		endeudamiento.getGastosFijos(),
+            		endeudamiento.getGastoVaribales());
+            System.out.println(Constantes.TEXTO_CAPACIDAD_ENDEUDAMIENTO + capEndeudamiento);
+            
         }
+        in.close();
     }
 
     public static boolean isNumeric(String value) {
-        // implementa un bloque try catch aca
-        Double.parseDouble(value);
-
+        
+        try {
+        	Double.parseDouble(value);
+        	return true;
+        	
+        }
+        catch(NumberFormatException e){
+			JOptionPane.showMessageDialog(null,Constantes.TEXTO_MENSAJE_ERROR_NUMERICO,
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+        	
+        	return false;
+			
+		}
+        
+    }
+    
+    public static boolean evaluaEntrada(String val) {
+            	
+        if (val.equals("NO")) { 
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
 }
