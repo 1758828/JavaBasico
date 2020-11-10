@@ -6,7 +6,7 @@ import javafx.scene.input.KeyCode;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-import clases.Constantes;
+import clases.Constant;
 
 
 public class Main {
@@ -27,27 +27,27 @@ public class Main {
         while (entrada.equals("SI")) {
         	
         	//Solicita los ingresos
-        	System.out.println(Constantes.TEXTO_INGRESOS);
+        	System.out.println(Constant.TEXTO_INGRESOS);
         	valor = in.nextLine();
             if(evaluaEntrada(valor)) {
             	entrada = "NO";
             
             }
             while (isNumeric(valor)==false) {
-        		System.out.println(Constantes.TEXTO_INGRESOS);
+        		System.out.println(Constant.TEXTO_INGRESOS);
         		valor = in.nextLine();
         	}
         	ingMensuales = Integer.parseInt(valor);
         	endeudamiento.setIngresosTotales(ingMensuales);
             
             //Solicita los gastos fijos
-            System.out.println(Constantes.TEXTO_GASTOS_FIJOS);
+            System.out.println(Constant.TEXTO_GASTOS_FIJOS);
             valor = in.nextLine();
             if(evaluaEntrada(valor)) {
             	entrada = "NO";
             }
             while (isNumeric(valor)==false) {
-        		System.out.println(Constantes.TEXTO_GASTOS_FIJOS);
+        		System.out.println(Constant.TEXTO_GASTOS_FIJOS);
         		valor = in.nextLine();
             }
             gasFijos = Integer.parseInt(valor);
@@ -56,13 +56,13 @@ public class Main {
             
             
             //Solicita los gastos variables
-            System.out.println(Constantes.TEXTO_GASTOS_VARIABLES);
+            System.out.println(Constant.TEXTO_GASTOS_VARIABLES);
             valor = in.nextLine();
             if(evaluaEntrada(valor)) {
             	entrada = "NO";
             }
             while (isNumeric(valor)==false) {
-        		System.out.println(Constantes.TEXTO_GASTOS_FIJOS);
+        		System.out.println(Constant.TEXTO_GASTOS_FIJOS);
         		valor = in.nextLine();
             }
             gasVariables = Integer.parseInt(valor);
@@ -74,7 +74,7 @@ public class Main {
             capEndeudamiento = endeudamiento.getCapacidadEndeudamiento(endeudamiento.getIngresosTotales(),
             		endeudamiento.getGastosFijos(),
             		endeudamiento.getGastoVaribales());
-            System.out.println(Constantes.TEXTO_CAPACIDAD_ENDEUDAMIENTO + capEndeudamiento);
+            System.out.println(Constant.TEXTO_CAPACIDAD_ENDEUDAMIENTO + capEndeudamiento);
             
         }
         in.close();
@@ -88,7 +88,7 @@ public class Main {
         	
         }
         catch(NumberFormatException e){
-			JOptionPane.showMessageDialog(null,Constantes.TEXTO_MENSAJE_ERROR_NUMERICO,
+			JOptionPane.showMessageDialog(null,Constant.TEXTO_MENSAJE_ERROR_NUMERICO,
 					"Error",
 					JOptionPane.ERROR_MESSAGE);
         	

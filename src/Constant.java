@@ -1,6 +1,6 @@
-package clases;
 
-public class Constantes {
+
+public class Constant {
 	public static final String TEXTO_INGRESOS = "Ingrese sus ingresos mensuales";
 	public static final String TEXTO_GASTOS_FIJOS = "Ingrese sus gastos Fijos";
 	public static final String TEXTO_GASTOS_VARIABLES = "Ingrese sus gastos Variables";
