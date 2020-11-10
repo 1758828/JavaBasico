@@ -7,5 +7,6 @@ public class Constant {
 	public static final String TEXTO_GASTOS_VARIABLES = "Ingrese sus gastos Variables";
 	public static final String TEXTO_CAPACIDAD_ENDEUDAMIENTO = "Su capacidad de endeudamiento es: ";
 	public static final String TEXTO_MENSAJE_ERROR_NUMERICO = "Debe ingresar un valor numerico";
+	public static final String TEXTO_CONTINUAR = "Desea continuar? SI/NO";
 	
 }

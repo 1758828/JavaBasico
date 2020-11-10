@@ -11,7 +11,9 @@ import clases.Constant;
 
 
 public class Main {
-     
+    
+	
+	
     public static void main(String[] args) {
     	//definición de variables
     	int gasFijos=0;
@@ -21,64 +23,41 @@ public class Main {
         
     	CapacidadEndedudamiento endeudamiento = new CapacidadEndedudamiento();
         
-        Scanner in = new Scanner(System.in);
-        
-        String entrada = "SI";
+    	String entrada = "SI";
         String valor = "";
+        String tipo = "N";
         while (entrada.equals("SI")) {
         	
+        	tipo = "N";
         	//Solicita los ingresos
-        	System.out.println(Constant.TEXTO_INGRESOS);
-        	valor = in.nextLine();
-            if(evaluaEntrada(valor)) {
-            	entrada = "NO";
-            
-            }
-            while (isNumeric(valor)==false) {
-        		System.out.println(Constant.TEXTO_INGRESOS);
-        		valor = in.nextLine();
-        	}
+        	valor = imprimir(Constant.TEXTO_INGRESOS, tipo);
         	ingMensuales = Integer.parseInt(valor);
         	endeudamiento.setIngresosTotales(ingMensuales);
             
             //Solicita los gastos fijos
-            System.out.println(Constant.TEXTO_GASTOS_FIJOS);
-            valor = in.nextLine();
-            if(evaluaEntrada(valor)) {
-            	entrada = "NO";
-            }
-            while (isNumeric(valor)==false) {
-        		System.out.println(Constant.TEXTO_GASTOS_FIJOS);
-        		valor = in.nextLine();
-            }
+        	valor = imprimir(Constant.TEXTO_GASTOS_FIJOS, tipo);
             gasFijos = Integer.parseInt(valor);
             endeudamiento.setGastosFijos(gasFijos);
             
-            
-            
             //Solicita los gastos variables
-            System.out.println(Constant.TEXTO_GASTOS_VARIABLES);
-            valor = in.nextLine();
-            if(evaluaEntrada(valor)) {
-            	entrada = "NO";
-            }
-            while (isNumeric(valor)==false) {
-        		System.out.println(Constant.TEXTO_GASTOS_FIJOS);
-        		valor = in.nextLine();
-            }
+            valor = imprimir(Constant.TEXTO_GASTOS_VARIABLES, tipo);
             gasVariables = Integer.parseInt(valor);
             endeudamiento.setGastoVaribales(gasVariables);
-         
             
-            //Esto te dara la primera entrada al proceso de solicitar los datos para instancir nuestro objeto
-             
+            //Esto te dara la primera entrada al proceso de solicitar los datos para instancir nuestro objeto 
             capEndeudamiento = endeudamiento.getCapacidadEndeudamiento(endeudamiento.getIngresosTotales(),
             		endeudamiento.getGastosFijos(),
             		endeudamiento.getGastoVaribales());
             System.out.println(Constant.TEXTO_CAPACIDAD_ENDEUDAMIENTO + capEndeudamiento);
             
+            tipo = "A";
+            entrada = imprimir(Constant.TEXTO_CONTINUAR, tipo);
+            while ( !entrada.equals("SI") && !entrada.equals("NO")) {
+            	entrada = imprimir(Constant.TEXTO_CONTINUAR, tipo);
+            }
+            
         }
-        in.close();
+        
     }
 
     public static boolean isNumeric(String value) {
@@ -96,6 +75,25 @@ public class Main {
         	return false;
 			
 		}
+        
+    }
+    
+    public static String imprimir(String message, String tipo) {
+    	String value;
+    	
+    	Scanner in = new Scanner(System.in);
+    	
+    	System.out.println(message);
+    	value = in.nextLine();
+        
+    	if (tipo == "N") {
+			while (isNumeric(value)==false) {
+				System.out.println(message);
+				value = in.nextLine();
+		    }
+    	}
+		
+		return value;
         
     }
     
