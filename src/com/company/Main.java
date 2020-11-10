@@ -1,5 +1,6 @@
 package com.company;
 
+
 import clases.CapacidadEndedudamiento;
 import javafx.scene.input.KeyCode;
 

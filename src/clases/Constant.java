@@ -1,5 +1,6 @@
 package clases;
 
+
 public class Constant {
 	public static final String TEXTO_INGRESOS = "Ingrese sus ingresos mensuales";
 	public static final String TEXTO_GASTOS_FIJOS = "Ingrese sus gastos Fijos";
